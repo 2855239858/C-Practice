@@ -1,4 +1,6 @@
 #include<iostream>
+#include<vector>
+#include<stack>
 #include "data_struct.h"
 using namespace std;
 
