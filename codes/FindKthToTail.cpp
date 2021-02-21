@@ -1,48 +1,48 @@
 #include<iostream>
-#include "data_struct.h"
 #include<vector>
+#include "algorithm.h"
 using namespace std;
 
-ListNode* FindKthToTail1(ListNode* pListHead, unsigned int k) {
-    if(pListHead == nullptr) return nullptr;
+// ListNode* FindKthToTail1(ListNode* pListHead, unsigned int k) {
+//     if(pListHead == nullptr) return nullptr;
     
-    int size = 0;
+//     int size = 0;
     
-    ListNode* tmp = pListHead;
-    while(tmp != nullptr){
-        size++;
-        tmp = tmp->next;
-    }
+//     ListNode* tmp = pListHead;
+//     while(tmp != nullptr){
+//         size++;
+//         tmp = tmp->next;
+//     }
     
-    if(k > size) return nullptr;
+//     if(k > size) return nullptr;
     
-    tmp = pListHead;
-    for(size -= k; size > 0; size--){
-        tmp = tmp->next;
-    }
+//     tmp = pListHead;
+//     for(size -= k; size > 0; size--){
+//         tmp = tmp->next;
+//     }
     
-    return tmp;
-}
+//     return tmp;
+// }
 
-ListNode* FindKthToTail2(ListNode* pListHead, unsigned int k) {
-    if(pListHead == nullptr) return nullptr;
+// ListNode* FindKthToTail2(ListNode* pListHead, unsigned int k) {
+//     if(pListHead == nullptr) return nullptr;
     
-    ListNode* slow = pListHead;
-    ListNode* fast = pListHead;
-    int k_th = k;
+//     ListNode* slow = pListHead;
+//     ListNode* fast = pListHead;
+//     int k_th = k;
     
-    while(fast != nullptr && k_th-- > 0){
-        fast = fast->next;
-    }
-    if(k_th > 0) return nullptr;
+//     while(fast != nullptr && k_th-- > 0){
+//         fast = fast->next;
+//     }
+//     if(k_th > 0) return nullptr;
         
-    while(fast != nullptr){
-        fast = fast->next;
-        slow = slow->next;
-    }
+//     while(fast != nullptr){
+//         fast = fast->next;
+//         slow = slow->next;
+//     }
     
-    return slow;
-}
+//     return slow;
+// }
 
 int main(void){
     vector<int> input_data = {1,2,3,4};
@@ -53,7 +53,11 @@ int main(void){
         tmp->next = list;
         list = tmp;
     }
-
+    // reorderList2(list);
+    // while(list != nullptr){
+    //     cout<<list->val<<'-';
+    //     list = list->next;
+    // }
     cout<<FindKthToTail1(list, 1)->val<<endl<<FindKthToTail2(list, 1)->val;
 
     return 1;

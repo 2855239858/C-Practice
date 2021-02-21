@@ -268,3 +268,66 @@ vector<int> recursion_printListFromTailToHead(ListNode* head) {
     
     return ans;
 }
+
+ListNode* reverse_node(ListNode* node){
+    if(node == nullptr) return node;
+    
+    ListNode* new_node = new ListNode(-1);
+    new_node->next = node;
+    while(node->next != nullptr){
+        ListNode* tmp = node->next;
+        node->next = tmp->next;
+        tmp->next = new_node->next;
+        new_node->next = tmp;
+    }
+    
+    return new_node->next;
+}
+
+void reorderList1(ListNode *head) {
+    if(!head) return;
+    ListNode* slow = head;
+    ListNode* fast = head;
+    
+    while(fast != nullptr && fast->next != nullptr){
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+    ListNode* mid = slow->next;
+    slow->next = nullptr;
+    mid = reverse_node(mid);
+    fast = head;
+    while(mid != nullptr && fast != nullptr){
+        ListNode* tmp = mid;
+        mid = mid->next;
+        tmp->next = fast->next;
+        fast->next = tmp;
+        fast = tmp->next;
+    }
+    while(head != nullptr){
+        cout<<head->val<<'-';
+        head = head->next;
+    }
+}
+
+void reorderList2(ListNode *head) {
+    if(!head) return;
+    vector<ListNode*> list_nodes;
+    ListNode* tmp = head;
+    while(tmp != nullptr){
+        list_nodes.push_back(tmp);
+        tmp = tmp->next;
+    }
+    int i = 0, j = list_nodes.size() - 1;
+    for(; i < j; i++, j--){
+        list_nodes[j]->next = list_nodes[i]->next;
+        list_nodes[i]->next = list_nodes[j];
+    }
+
+    list_nodes[i]->next = nullptr;
+    
+    while(head != nullptr){
+        cout<<head->val<<'-';
+        head = head->next;
+    }
+}
