@@ -1,4 +1,5 @@
 #include <iostream>
+#include "algorithm.h"
 using namespace std;
 
 template<typename T, typename U> T my_max(T a,U b){
@@ -26,10 +27,14 @@ template<typename T> T my_Max<T>::which_bigger(){
 
 int main()
 {
-    char a = 'b', b = 'w';
-    my_Max<char> ans(a,b);
-    printf("template function : %c \n", my_max(a,b));
-    printf("template class : %c \n", ans.which_bigger());
+    //template class and template function test
+    // char a = 'b', b = 'w';
+    // my_Max<char> ans(a,b);
+    // printf("template function : %c \n", my_max(a,b));
+    // printf("template class : %c \n", ans.which_bigger());
 
+    //get cube root of a number test
+    double input = 27.0;
+    cout<< getCubeRoot(input);
     return 0;
 }

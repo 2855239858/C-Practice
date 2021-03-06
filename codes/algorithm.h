@@ -331,3 +331,13 @@ void reorderList2(ListNode *head) {
         head = head->next;
     }
 }
+
+double getCubeRoot(double input){
+    double ans = 1.0;
+
+    do{
+        ans = ans - (ans * ans * ans - input)/(3 * ans * ans);
+    }while(ans * ans * ans - input > 0.01 || ans * ans * ans - input < -0.01);
+
+    return ans;
+}
