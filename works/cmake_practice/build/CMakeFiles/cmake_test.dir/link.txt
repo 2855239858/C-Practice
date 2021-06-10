@@ -1,0 +1,1 @@
+/usr/bin/c++    -rdynamic CMakeFiles/cmake_test.dir/src/test.cpp.o CMakeFiles/cmake_test.dir/include/algorithm.cpp.o  -o cmake_test 

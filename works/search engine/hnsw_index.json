@@ -1,0 +1,40 @@
+{
+    "test_data": {
+      "distractor_db": "../unit_tests/test_data/CI-TESTING-FEATURE24802/distractors_db",
+      "distractor_db_num": -1,
+      "target_db": "../unit_tests/test_data/CI-TESTING-FEATURE24802/targets_db",
+      "target_db_num": -1,
+      "target_query": "../unit_tests/test_data/CI-TESTING-FEATURE24802/targets_query",
+      "target_query_num": -1
+    },
+    "license": "../unit_tests/KESTREL.lic",
+    "device_id": -1,
+    "input_serialized_file": "",
+    "input_with_db": true,
+    "output_serialized_file": "",
+    "output_with_db": true,
+    "num_sampling_features": 200000,
+    "num_threads": 1,
+    "reserved_memory_size": 0,
+    "index_type": "INDEX_HNSW",
+    "index_params": {
+      "feature_dim": 256,
+      "max_db_size": 310000,
+      "M": 48,
+      "ef_construction": 48,
+      "ef": 32,
+      "use_int8": false 
+    },
+    "search_engine_search_config": {
+      "k": 32,
+      "threshold": 0.0,
+      "batch_size":32,
+      "id_filter": {
+        "camera": [],
+        "time_begin": 0,
+        "time_end": 0
+      },
+      "dist_type": "inner_product"
+    },
+    "print_error_query": false
+  }

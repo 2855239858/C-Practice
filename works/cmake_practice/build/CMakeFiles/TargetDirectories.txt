@@ -1,0 +1,3 @@
+/home/SENSETIME/ranyunchuan/Desktop/works/cmake_practice/build/CMakeFiles/rebuild_cache.dir
+/home/SENSETIME/ranyunchuan/Desktop/works/cmake_practice/build/CMakeFiles/edit_cache.dir
+/home/SENSETIME/ranyunchuan/Desktop/works/cmake_practice/build/CMakeFiles/cmake_test.dir

@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/SENSETIME/ranyunchuan/Desktop/works/cmake_practice/include/algorithm.h
+
+/home/SENSETIME/ranyunchuan/Desktop/works/cmake_practice/src/test.cpp
+iostream
+-
+../include/algorithm.h
+/home/SENSETIME/ranyunchuan/Desktop/works/cmake_practice/include/algorithm.h
+

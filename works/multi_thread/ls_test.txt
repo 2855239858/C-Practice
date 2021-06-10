@@ -1,0 +1,11 @@
+总用量 56K
+drwxr-xr-x  2 SENSETIME\ranyunchuan SENSETIME\domain^users 4.0K 5月  19 10:19 .
+drwxr-xr-x 11 SENSETIME\ranyunchuan SENSETIME\domain^users 4.0K 5月  17 14:27 ..
+-rw-r--r--  1 SENSETIME\ranyunchuan SENSETIME\domain^users 1.8K 5月  18 16:20 env.cpp
+-rwxr-xr-x  1 SENSETIME\ranyunchuan SENSETIME\domain^users 9.3K 5月  18 16:20 env.o
+-rw-r--r--  1 SENSETIME\ranyunchuan SENSETIME\domain^users 1.3K 5月  18 16:51 exec_test.cpp
+-rwxr-xr-x  1 SENSETIME\ranyunchuan SENSETIME\domain^users 8.7K 5月  18 16:43 exec_test.o
+-rw-r--r--  1 SENSETIME\ranyunchuan SENSETIME\domain^users    0 5月  19 10:20 ls_test.txt
+-rw-r--r--  1 SENSETIME\ranyunchuan SENSETIME\domain^users 2.9K 5月  19 10:12 wait_test.cpp
+-rwxr-xr-x  1 SENSETIME\ranyunchuan SENSETIME\domain^users 8.9K 5月  19 10:00 wait_test.o
+--------------------------
