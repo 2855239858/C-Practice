@@ -4,7 +4,7 @@
 using namespace std;
 
 
-//å¿«é€Ÿæ’åºåˆ†å‰²æ³•1ï¼šä¸¤ä¸ªæŒ‡é’ˆä»å·¦åˆ°å³ä¾æ¬¡éå†
+//¿ìËÙÅÅĞò·Ö¸î·¨1£ºÁ½¸öÖ¸Õë´Ó×óµ½ÓÒÒÀ´Î±éÀú
 int partition1(vector<int>& nums, int left, int right){
     int pivot = nums[right];
     int i = left;
@@ -18,7 +18,7 @@ int partition1(vector<int>& nums, int left, int right){
     return i;
 }
 
-//å¿«é€Ÿæ’åºåˆ†å‰²æ³•2ï¼šå·¦å³æŒ‡é’ˆåˆ†åˆ«å‘ä¸­é—´é é½ï¼Œæ³¨æ„ï¼ï¼ï¼è¿™ä¸ªæœ‰ä¸€äº›bug
+//¿ìËÙÅÅĞò·Ö¸î·¨2£º×óÓÒÖ¸Õë·Ö±ğÏòÖĞ¼ä¿¿Æë£¬×¢Òâ£¡£¡£¡Õâ¸öÓĞÒ»Ğ©bug
 int partition2(vector<int> & nums, int left , int right){
     int pivot = nums[right];
     int end = right;
@@ -45,7 +45,7 @@ int partition2(vector<int> & nums, int left , int right){
     return left;
 }
 
-//å¿«é€Ÿæ’åºåˆ†å‰²æ³•3ï¼šå·¦å³æŒ‡é’ˆå‘ä¸­é—´é é½ï¼Œä½†æ˜¯å·¦å³æŒ‡é’ˆæ˜¯åˆ†åˆ«èµ°åŠ¨ç„¶åæ›¿æ¢ï¼Œå’Œ2ä¸åŒã€‚
+//¿ìËÙÅÅĞò·Ö¸î·¨3£º×óÓÒÖ¸ÕëÏòÖĞ¼ä¿¿Æë£¬µ«ÊÇ×óÓÒÖ¸ÕëÊÇ·Ö±ğ×ß¶¯È»ºóÌæ»»£¬ºÍ2²»Í¬¡£
 int partition3(vector<int>& nums, int left, int right) {
     int pivot = nums[left];
 
@@ -75,14 +75,14 @@ void sort_recursion(vector<int> & nums, int left, int right){
     }
 }
 
-//å¿«é€Ÿæ’åºï¼šä½¿ç”¨é€’å½’æ–¹æ³•ç‰ˆæœ¬
+//¿ìËÙÅÅĞò£ºÊ¹ÓÃµİ¹é·½·¨°æ±¾
 void my_sort_recursion(vector<int> & nums){
     int left = 0;
     int right = nums.size() - 1;
     sort_recursion(nums, left, right);
 }
 
-//å¿«é€Ÿæ’åºï¼šä½¿ç”¨éé€’å½’æ–¹æ³•ç‰ˆæœ¬ï¼Œé€šè¿‡å®ç°ä¸€ä¸ªæ ˆæ¥æ¨¡æ‹Ÿé€’å½’
+//¿ìËÙÅÅĞò£ºÊ¹ÓÃ·Çµİ¹é·½·¨°æ±¾£¬Í¨¹ıÊµÏÖÒ»¸öÕ»À´Ä£Äâµİ¹é
 void my_sort_unrecursion(vector<int>& nums){
     stack<int> edges;
     edges.push(0);
@@ -110,7 +110,7 @@ void my_sort_unrecursion(vector<int>& nums){
     
 }
 
-//å†’æ³¡æ’åº
+//Ã°ÅİÅÅĞò
 void my_bubblesort(vector<int>& nums){
     for (int i = nums.size() - 1; i >= 0; i--)
     {
@@ -127,7 +127,7 @@ void my_bubblesort(vector<int>& nums){
     }
 }
 
-//é€‰æ‹©æ’åº
+//Ñ¡ÔñÅÅĞò
 void my_selectsort(vector<int>& nums){
     int min_index;
 
@@ -146,7 +146,7 @@ void my_selectsort(vector<int>& nums){
     }
 }
 
-//æ’å…¥æ’åº
+//²åÈëÅÅĞò
 void my_insertsort(vector<int>& nums){
     for(int i = 1; i < nums.size(); i++){
         for(int j = i - 1; j >= 0 && nums[j] > nums[j + 1]; j--){
@@ -165,7 +165,7 @@ int main(){
     vector<int> nums4 = {1,1,4,5,1,4,1,9,8,1,0};
     vector<int> nums5 = {1,1,4,5,1,4,1,9,8,1,0};
 
-    printf("åŸå§‹æ•°æ®: ");
+    printf("Ô­Ê¼Êı¾İ: ");
     for (int i = 0; i <nums1.size(); i++)
     {
         printf("%d ", nums1[i]);
@@ -178,35 +178,35 @@ int main(){
     my_selectsort(nums4);
     my_insertsort(nums5);
 
-    printf("ä½¿ç”¨éé€’å½’çš„å¿«é€Ÿæ’åº: ");
+    printf("Ê¹ÓÃ·Çµİ¹éµÄ¿ìËÙÅÅĞò: ");
     for (int i = 0; i <nums1.size(); i++)
     {
         printf("%d ", nums1[i]);
     }
     cout<<endl;
 
-    printf("ä½¿ç”¨é€’å½’çš„å¿«é€Ÿæ’åº: ");
+    printf("Ê¹ÓÃµİ¹éµÄ¿ìËÙÅÅĞò: ");
     for (int i = 0; i <nums2.size(); i++)
     {
         printf("%d ", nums2[i]);
     }
     cout<<endl;
 
-    printf("å†’æ³¡æ’åº: ");
+    printf("Ã°ÅİÅÅĞò: ");
     for (int i = 0; i <nums3.size(); i++)
     {
         printf("%d ", nums3[i]);
     }
     cout<<endl;
 
-    printf("é€‰æ‹©æ’åº: ");
+    printf("Ñ¡ÔñÅÅĞò: ");
     for (int i = 0; i <nums4.size(); i++)
     {
         printf("%d ", nums4[i]);
     }
     cout<<endl;
 
-    printf("æ’å…¥æ’åº: ");
+    printf("²åÈëÅÅĞò: ");
     for (int i = 0; i <nums5.size(); i++)
     {
         printf("%d ", nums5[i]);
