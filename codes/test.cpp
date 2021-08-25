@@ -2,7 +2,8 @@
 #include <iostream>
 #include "algorithm.h"
 #include <algorithm>
-#include<string.h>
+#include <cmath>
+#include <string.h>
 using namespace std;
 
 #include <stack>
@@ -437,6 +438,123 @@ public:
     }
 };
 
+//////////////////////////////////////////////////////////////////////////////////////////
+///////////////环形数组是否存在
+class Is_Circle_Array_Solution {
+public:
+    int size = 0;
+    bool circularArrayLoop(vector<int>& nums) {
+        size = nums.size();
+        uint8_t is_circle[size];
+        memset(is_circle, 0, sizeof(uint8_t) * size);
+        
+        for(int i = 0; i < size; ++i) {
+            if(travel(nums, is_circle, i, nums[i] < 0, 0)) return true;
+        }
+        return false;
+    }
+    
+    bool travel(vector<int>& nums, uint8_t* is_circle, int index, bool neg, int cnt) {
+        if(is_circle[index]) return (is_circle[index] != 2) && (cnt > 1);
+        // 0:未访问 1:访问 2：不满足 3：满足
+        
+        is_circle[index] = 1;
+        if((nums[index] < 0 && neg == false) || (nums[index] > 0 && neg == true)) {
+            is_circle[index] = 0;
+            return false;
+        }
+        if(travel(nums, is_circle, ((index + nums[index]) % size + size) % size, neg, cnt + 1)) {
+            is_circle[index] = 3;
+            return true;
+        }
+        is_circle[index] = 2;
+        return false;
+    }
+};
+
+/////////////////////////////////////////////////////////////////////////////////////////////////
+/////////stars
+class Stars_Solution {
+public:
+    vector<int> asteroidCollision(vector<int>& asteroids) {
+        int n = asteroids.size();
+        vector<int> ans;
+        
+        for(int i = 1; i < n; ++i) {
+            if(ans.size() == 0 || ans.back() * asteroids[i] >0) {
+                ans.push_back(asteroids[i]);
+            } else {
+                if(ans.back() < 0) ans.push_back(asteroids[i]);
+                else {
+                    while(ans.size() > 0 && abs(asteroids[i]) > abs(ans.back()) && ans.back() * asteroids[i] < 0) {
+                        ans.pop_back();
+                    }
+                    if(ans.size() == 0) ans.push_back(asteroids[i]);
+                    else if(-asteroids[i] == ans.back()) ans.pop_back();
+                }
+            }
+        }
+        
+        return ans;
+    }
+};
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////等差数列子数组
+class Arithmetic_Solution {
+public:
+    int numberOfArithmeticSlices(vector<int>& nums) {
+        int ans = 0, cnt = 0, pre = INT_MAX;
+        if(nums.size() < 3) return ans;
+        
+        for(int i = 0, n = nums.size(); i < n; ++i) {
+            if(pre == INT_MAX || pre != nums[i] - nums[i - 1]) {
+                // ans += power(2, cnt) - (cnt - 1) * cnt / 2 - cnt - 1;
+                if(cnt > 2) ans += pow(2, cnt) - (cnt + 1) * cnt / 2 - 1;
+                pre = nums[i] - nums[i - 1];
+                cnt = 2;
+            } else {
+                cnt += 1;
+            }
+        }
+        if(cnt > 2) ans += pow(2, cnt) - (cnt + 1) * cnt / 2 - 1;
+        return ans;
+    }
+};
+
+/////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////// k站内最便宜的航班
+
+class findCheapestPrice_Solution {
+public:
+    int findCheapestPrice(int n, vector<vector<int>>& flights, int src, int dst, int k) {
+        int dp[n];
+        memset(dp, 0x3f, sizeof(dp));
+        dp[src] = 0;
+        
+        int ans = 0x3f3f3f3f;
+        for(int t = 0; t < k + 1; ++t) {
+            int new_dp[n];
+            memset(new_dp, 0x3f, sizeof(new_dp));
+            for(auto route: flights) {
+                int i = route[0], j = route[1], price = route[2];
+                new_dp[j] = min(new_dp[j], dp[i] + price);
+                // new_dp[j] = min(dp[j], dp[i] + price);
+                // cout<<"src: "<<i<<" des: "<<j<<" prices: "<<price<<" --- dp[j]: "<<dp[j]<<" dp[i] + price: "<<dp[i] + price<<endl;
+            }
+
+            // for(int i = 0; i < n; ++i) cout<<" "<<new_dp[i];
+            // cout<<endl;
+
+            memcpy(dp, new_dp, sizeof(dp));
+            ans = min(ans, dp[dst]);
+        }
+        
+        return ans == 0x3f3f3f3f? -1: ans;
+    }
+};
+
 int main()
 {
     ///////////////////////////////////////////////////////////////////////////
@@ -518,6 +636,7 @@ int main()
     // for(int i = 2; i <= 10; ++i) stack[i - 1] = i;
     // cout<<"resize(10) --- {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}"<<endl;
     // cout<<"Size: "<<stack.size()<<", stack back: "<<stack.back()<<" capacity: "<<stack.capacity()<<endl;
+    // for(int i = 0; i < stack.size(); ++i) cout<<stack[i]<<endl;
     // stack.pop_back();
     // cout<<"pop_back()"<<endl;
     // cout<<"Size: "<<stack.size()<<", stack back: "<<stack.back()<<" capacity: "<<stack.capacity()<<endl;
@@ -563,20 +682,64 @@ int main()
     // delay_time.networkDelayTime(times, 4, 2);
     // // cout<<"Answer is: "<<delay_time.networkDelayTime(times, 4, 2)<<endl;
 
-    int nums1[10];
-    memset(nums1, 0x7f, sizeof(int) * 10);
-    for(int n : nums1) cout<<n<<" ";
-    cout<<endl;
-    int nums2[10];
-    memset(nums2, 0x81, sizeof(int) * 10);
-    for(int n : nums2) cout<<n<<" ";
-    cout<<endl;
-    int nums3[10];
-    memset(nums3, 0xff, sizeof(int) * 10);
-    for(int n : nums3) cout<<n<<" ";
-    cout<<endl;
+    // int nums1[10];
+    // memset(nums1, 0x7f, sizeof(int) * 10);
+    // for(int n : nums1) cout<<n<<" ";
+    // cout<<endl;
+    // int nums2[10];
+    // memset(nums2, 0x81, sizeof(int) * 10);
+    // for(int n : nums2) cout<<n<<" ";
+    // cout<<endl;
+    // int nums3[10];
+    // memset(nums3, 0xff, sizeof(int) * 10);
+    // for(int n : nums3) cout<<n<<" ";
+    // cout<<endl;
 
-    cout<<int(0x80000001)<<endl;
+    // cout<<int(0x80000001)<<endl;
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////is circle array 
+    // Is_Circle_Array_Solution is_circle;
+    // vector<int> nums = {-1,-2,-3,-4,-5};
+    // bool ans = is_circle.circularArrayLoop(nums);
+    // cout<<"ans is: "<<ans<<endl;
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////stars
+    // Stars_Solution stars;
+    // vector<int> a = {-2,-2,1,-2};
+    // auto ans = stars.asteroidCollision(a);
+    // for(int i = 0; i < ans.size(); ++i) {
+    //     cout<<ans[i]<<' ';
+    // }
+    // cout<<endl;
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////等差数列子数组
+    // Arithmetic_Solution arithma;
+    // vector<int> nums = {1, 2, 3, 4};
+    // int ans = arithma.numberOfArithmeticSlices(nums);
+    // cout<<"Nums is: [1, 2, 3, 4], answer is: "<<ans<<endl;
+
+
+    // int tempA = 2;
+    // int *ptrTempA = &tempA;
+    // int *ptrTempB;
+    // /*1.常规使用dclTempA为一个int *的指针*/
+    // decltype(ptrTempA) dclTempA;
+    // /*2.需要特别注意，表达式内容为解引用操作，dclTempB为一个引用，引用必须初始化，故编译不过*/
+    // decltype(*ptrTempA) dclTempB = tempA;
+    // decltype(*ptrTempB) declTempC = tempA;
+    // dclTempB = 20;
+    // cout<<tempA<<" "<<dclTempB<<endl;
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////k站内最便宜的航班
+    findCheapestPrice_Solution find;
+    vector<vector<int>> prices = {{3,4,4},{2,5,6},{4,7,10},{9,6,5},{7,4,4},{6,2,10},{6,8,6},{7,9,4},{1,5,4},{1,0,4},
+                                    {9,7,3},{7,0,5},{6,5,8},{1,7,6},{4,0,9},{5,9,1},{8,7,3},{1,2,6},{4,1,5},{5,2,4},
+                                    {1,9,1},{7,8,10},{0,4,2},{7,2,8}};
+    cout<<"Cheapest price: "<<find.findCheapestPrice(10, prices, 6, 0, 7)<<endl;
 
     return 0;
 }
