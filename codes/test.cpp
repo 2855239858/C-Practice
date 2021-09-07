@@ -555,6 +555,37 @@ public:
     }
 };
 
+class island_Solution {
+public:
+    int numIslands(vector<vector<char>>& grid) {
+        queue<pair<int, int>> q1;
+        int ans = 0;
+        
+        int n = grid.size(), m = grid[0].size();
+        for(int i = grid.size() - 1; i >= 0; --i) {
+            for(int j = grid[i].size() - 1; j >= 0; --j) {
+                if(grid[i][j] == '1') {
+                    ++ans;
+                    q1.push({i, j});
+                    while(q1.size() > 0) {
+                        auto& pos = q1.front();
+                        int x = pos.first, y = pos.second;
+                        q1.pop();
+                        grid[x][y] = '0';
+                        
+                        bool inside = x >= 0 && x < n && y >= 0 && y < m;
+                        if(inside && grid[x + 1][y] == '1') q1.push({x + 1, y});
+                        if(inside && grid[x][y + 1] == '1') q1.push({x, y + 1});
+                        if(inside && grid[x - 1][y] == '1') q1.push({x - 1, y});
+                        if(inside && grid[x][y - 1] == '1') q1.push({x, y - 1});
+                    }
+                }
+            }
+        }
+        return ans;
+    }
+};
+
 int main()
 {
     ///////////////////////////////////////////////////////////////////////////
@@ -735,11 +766,25 @@ int main()
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////k站内最便宜的航班
-    findCheapestPrice_Solution find;
-    vector<vector<int>> prices = {{3,4,4},{2,5,6},{4,7,10},{9,6,5},{7,4,4},{6,2,10},{6,8,6},{7,9,4},{1,5,4},{1,0,4},
-                                    {9,7,3},{7,0,5},{6,5,8},{1,7,6},{4,0,9},{5,9,1},{8,7,3},{1,2,6},{4,1,5},{5,2,4},
-                                    {1,9,1},{7,8,10},{0,4,2},{7,2,8}};
-    cout<<"Cheapest price: "<<find.findCheapestPrice(10, prices, 6, 0, 7)<<endl;
+    // findCheapestPrice_Solution find;
+    // vector<vector<int>> prices = {{3,4,4},{2,5,6},{4,7,10},{9,6,5},{7,4,4},{6,2,10},{6,8,6},{7,9,4},{1,5,4},{1,0,4},
+    //                                 {9,7,3},{7,0,5},{6,5,8},{1,7,6},{4,0,9},{5,9,1},{8,7,3},{1,2,6},{4,1,5},{5,2,4},
+    //                                 {1,9,1},{7,8,10},{0,4,2},{7,2,8}};
+    // cout<<"Cheapest price: "<<find.findCheapestPrice(10, prices, 6, 0, 7)<<endl;
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////岛屿数量
+    // island_Solution isIsland;
+    // vector<vector<char>> map = {{'1','1','1','1','0'},{'1','1','0','1','0'},{'1','1','0','0','0'},{'0','0','0','0','0'}};
+    // int ans = isIsland.numIslands(map);
+    // cout<<ans<<endl;
+
+    array<int, 26> arr1;
+    array<int, 26> arr2{};
+
+    for(int i = 0; i < arr1.size(); ++i) cout<<arr1[i]<<"  ";
+    cout<<endl;
+    for(int i = 0; i < arr2.size(); ++i) cout<<arr2[i]<<"  ";
 
     return 0;
 }
